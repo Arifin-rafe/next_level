@@ -1,4 +1,4 @@
-class BankAccount {
+class BankAccount1 {
     public readonly userId : string;
     public userName : string;
     private userBalance : number;
@@ -13,5 +13,6 @@ class BankAccount {
 
 }
 
-const account1 = new BankAccount("12345", "Alice", 1000);
-console.log(account1)
+const account1 = new BankAccount1("12345", "Alice", 1000);
+account1.addBalance(500);
+console.log(account1);
