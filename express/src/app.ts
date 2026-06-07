@@ -6,6 +6,7 @@ import express, {
 
 import { pool } from "./db";
 import { userRouter } from "./modules/user/user.route";
+import { profileRoute } from "./modules/profile/profile.route";
 const app: Application = express();
 
 app.use(express.json()); // for parsing application/json so that we can access req.body in our routes
@@ -21,6 +22,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use('/api/users', userRouter);
-app.use("/api/profile", profileRouter);
+app.use("/api/profile", profileRoute);
 
 export default app;
