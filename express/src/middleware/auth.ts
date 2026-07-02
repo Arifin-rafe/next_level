@@ -2,9 +2,9 @@ import type { Request, Response, NextFunction } from "express";
 import config from "../config";
 import jwt, { type JwtPayload } from "jsonwebtoken";
 import { pool } from "../db";
-const auth = () => {
+const auth = (... roles: any) => {
   return async (req: Request, res: Response, next: NextFunction) => {
-    // console.log("Authenticating user...");
+    console.log(roles);
     try {
       const token = req.headers.authorization;
       if (!token) {
@@ -31,7 +31,7 @@ const auth = () => {
           message: "Unauthorized access: User not found",
         });
       }
-      if (user.is_active === false) {
+      if (!user?.is_active) {
         res.status(403).json({
           success: false,
           message: "Forbidden: User account is inactive",
